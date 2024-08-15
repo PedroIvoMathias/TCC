@@ -14,7 +14,7 @@ import com.TCC.TCC.services.UsuarioService;
 
 @RestController
 @RequestMapping(value = "/usuarios")
-public class UsuarioResource {
+public class UsuarioController {
 
 	@Autowired
 	private UsuarioService service;

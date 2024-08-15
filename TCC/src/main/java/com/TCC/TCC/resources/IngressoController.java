@@ -14,7 +14,7 @@ import com.TCC.TCC.services.IngressoService;
 
 @RestController
 @RequestMapping(value = "/ingressos")
-public class IngressoResource {
+public class IngressoController {
 
 	@Autowired
 	private IngressoService service;
