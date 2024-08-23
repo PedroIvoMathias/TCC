@@ -33,6 +33,9 @@ public class UsuarioService {
 	
 	public Usuario findById(Long id) {
 		Optional<Usuario> obj = repository.findById(id);
+		if(obj.isEmpty()) {
+			throw new RuntimeException("Usuário não encontrado");
+		}
 		return obj.get();
 	}
 
