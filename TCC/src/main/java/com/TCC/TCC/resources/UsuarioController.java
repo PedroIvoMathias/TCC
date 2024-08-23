@@ -36,16 +36,11 @@ public class UsuarioController {
 	}
 
 
-	// PRECISA DE AJUSTES
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario usuario){
-		var entity = service.findById(id);
-		entity.setNome(usuario.getNome());
-		entity.setEmail(usuario.getEmail());
-		entity.setSenha(usuario.getSenha());
-		entity.setCpf(usuario.getCpf());
-		entity.setIngressos(usuario.getIngressos());
-		return ResponseEntity.ok().body(usuario);
+		usuario.setId(id);
+		Usuario updatedUsuario = service.update(usuario);
+		return ResponseEntity.ok().body(updatedUsuario);
 	}
 
 	@DeleteMapping(value = "/{id}")
