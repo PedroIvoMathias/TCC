@@ -12,15 +12,37 @@ import com.TCC.TCC.repositories.EventoRepository;
 @Service
 public class EventoService {
 
+	private final EventoRepository repository;
+
+
+
+
 	@Autowired
-	private EventoRepository repository;
+	public EventoService(EventoRepository repository) {
+		this.repository = repository;
+	}
+
+	public Evento create(Evento evento){
+		return repository.save(evento);
+	}
+
+	public Evento update(Evento evento){
+		return repository.save(evento);
+	}
+
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
 
 	public List<Evento> findAll() {
 		return repository.findAll();
 	}
-	
+
 	public Evento findById(Long id) {
 		Optional<Evento> obj = repository.findById(id);
+		if(obj.isEmpty()) {
+			throw new RuntimeException("Evento não encontrado");
+		}
 		return obj.get();
 	}
 
