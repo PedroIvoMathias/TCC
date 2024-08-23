@@ -16,12 +16,6 @@ public class EventoController {
 	@Autowired
 	private EventoService service;
 
-	@PostMapping
-	public ResponseEntity<Evento> insert(@RequestBody Evento obj) {
-		obj = service.insert(obj);
-		return ResponseEntity.ok().body(obj);
-	}
-
 	@GetMapping
 	public ResponseEntity<List<Evento>> findAll() {
 		List<Evento> list = service.findAll();

@@ -15,6 +15,18 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository repository;
 
+	public Usuario create(Usuario usuario){
+		return repository.save(usuario);
+	}
+
+	public Usuario update(Usuario usuario){
+		return repository.save(usuario);
+	}
+
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+
 	public List<Usuario> findAll() {
 		return repository.findAll();
 	}
