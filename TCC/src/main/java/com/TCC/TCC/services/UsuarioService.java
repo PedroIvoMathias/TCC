@@ -12,8 +12,12 @@ import com.TCC.TCC.repositories.UsuarioRepository;
 @Service
 public class UsuarioService {
 
+	private final UsuarioRepository repository;
+
 	@Autowired
-	private UsuarioRepository repository;
+	public UsuarioService(UsuarioRepository repository) {
+		this.repository = repository;
+	}
 
 	public Usuario create(Usuario usuario){
 		return repository.save(usuario);
