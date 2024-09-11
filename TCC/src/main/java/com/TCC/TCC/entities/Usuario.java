@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
 	@Column(nullable = false)
 	private String senha;
 
-	@Column(unique = true,nullable = false,length = 11)
+	@Column(unique = true,nullable = false,length = 20)
 	private String cpf;
 
 	@Column(nullable = false)
