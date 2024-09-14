@@ -20,19 +20,27 @@ public class Ingresso implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	@Column(nullable = false)
-	private int quantidade;
+	
 	@Column(nullable = false)
 	private Float preco;
+	
 	@Column(nullable = false)
 	private Boolean meia;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "evento_id")
 	private Evento evento;
+
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
 
 }
