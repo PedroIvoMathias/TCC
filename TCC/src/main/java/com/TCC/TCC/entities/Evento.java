@@ -2,7 +2,7 @@ package com.TCC.TCC.entities;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,28 +22,65 @@ public class Evento implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long Id;
+
 	@Column(unique = true, nullable = false)
 	private String nome;
+
 	@Column(nullable = false)
-	private LocalDate horario;
-	@Column(nullable = false)
-	private LocalDate data;
+	private LocalDateTime data;
+
 	@Column(nullable = false)
 	private int quantidadeDeLugares;
-	@Column
+
+	@Column(nullable = false)
 	private String descricao;
+
 	@Column(nullable = false)
 	private String localizacao;
+
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "evento")
+//	private List<Ingresso> ingressos = new ArrayList<>();
+
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
+	}
+
+	public int getQuantidadeDeLugares() {
+		return quantidadeDeLugares;
+	}
+
+	public void setQuantidadeDeLugares(int lugares) {
+		quantidadeDeLugares = lugares;
+	}
+
+	public void alterarQuantidadeDeLugares(int novosLugares) {
+		setQuantidadeDeLugares(novosLugares);
+	}
+
+//	public void addIngresso(Ingresso ing) {
+//		ingressos.add(ing);
+//	}
+//
+//	public void removeIngresso(Ingresso ing) {
+//		ingressos.remove(ing);
+//	}
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "evento")
-	private List<Ingresso> ingressos = new ArrayList<>();
-
-
-
-
 	
+	Ingresso ingressos[] = new Ingresso[quantidadeDeLugares];
+	
+	public void comprarIngresso() {
+		if(getQuantidadeDeLugares()>=0) {
+			setQuantidadeDeLugares(getQuantidadeDeLugares()-1);
+			
+		}
+	}
 }
