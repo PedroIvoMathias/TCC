@@ -63,7 +63,7 @@ public class Evento implements Serializable {
 	}
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "compraEvento")
+	@ManyToMany(mappedBy = "compraEvento")
 	Compra compraEvento[] = new Compra[quantidadeDeLugares];
 	
 	public void comprarIngresso() {

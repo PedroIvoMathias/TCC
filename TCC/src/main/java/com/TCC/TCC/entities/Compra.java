@@ -27,13 +27,14 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	
-	@ManyToOne
+	//muitas compras para um único usuário
+	@ManyToOne 
 	@JoinColumn(name = "usuario_id",nullable = false )
 	private Usuario proprietario;
 
 	@ManyToOne
 	@JoinColumn(name = "evento_id",nullable = false)
-	private Evento evento;
+	private List<Evento> evento = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "compra")
 	private List<Ingresso> ingressos = new ArrayList<>();
