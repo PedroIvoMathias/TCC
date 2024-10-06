@@ -31,7 +31,6 @@ public class Usuario implements Serializable {
 	@Column(nullable = false)
 	private String senha;
 
-
 	@Column(unique = true, nullable = false, length = 11)
 
 	private String cpf;
@@ -51,6 +50,46 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public List<Compra> getCompra() {
+		return compra;
+	}
+
+	public void setCompra(List<Compra> compra) {
+		this.compra = compra;
+	}
+
 	public void addCompra(Compra comp) {
 		compra.add(comp);
 	}
@@ -59,8 +98,16 @@ public class Usuario implements Serializable {
 		compra.remove(comp);
 	}
 
-	public List<Compra> consultaCompra() {
-		return new ArrayList<>(compra);
+	public void consultaCompras() {
+		for (Compra com : compra) {
+			System.out.println(com);
+		}
+	}
+	
+	public void realizarCompra() {
+		for(Compra comp : compra) {
+			//compra.add
+		}
 	}
 
 }

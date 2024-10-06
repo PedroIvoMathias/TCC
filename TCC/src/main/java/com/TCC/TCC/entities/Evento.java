@@ -42,9 +42,9 @@ public class Evento implements Serializable {
 	@Column(nullable = false)
 	private String localizacao;
 
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "evento")
-//	private List<Ingresso> ingressos = new ArrayList<>();
+	@JsonIgnore
+	@ManyToMany(mappedBy = "evento")
+	private List<Compra> compraEvento = new ArrayList<>();
 
 	public long getId() {
 		return Id;
@@ -54,6 +54,38 @@ public class Evento implements Serializable {
 		Id = id;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public LocalDateTime getData() {
+		return data;
+	}
+
+	public void setData(LocalDateTime data) {
+		this.data = data;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getLocalizacao() {
+		return localizacao;
+	}
+
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
+	}
+
 	public int getQuantidadeDeLugares() {
 		return quantidadeDeLugares;
 	}
@@ -61,15 +93,13 @@ public class Evento implements Serializable {
 	public void setQuantidadeDeLugares(int lugares) {
 		quantidadeDeLugares = lugares;
 	}
-	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "compraEvento")
-	Compra compraEvento[] = new Compra[quantidadeDeLugares];
-	
-	public void comprarIngresso() {
-		if(getQuantidadeDeLugares()>=0) {
-			setQuantidadeDeLugares(getQuantidadeDeLugares()-1);
-			
-		}
+
+	public void alterarQuantiLugaresEvento(int novaQuantidade) {
+		this.setQuantidadeDeLugares(novaQuantidade);
+	}
+
+	public String detalhesEvento() {
+		return "Nome " + this.getNome() + "\nData " + this.getData() + "\nlocalização " + this.getLocalizacao()
+				+ "\nDescrição do evento: " + this.getDescricao();
 	}
 }
