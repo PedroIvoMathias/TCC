@@ -61,21 +61,10 @@ public class Evento implements Serializable {
 	public void setQuantidadeDeLugares(int lugares) {
 		quantidadeDeLugares = lugares;
 	}
-
-	public void alterarQuantidadeDeLugares(int novosLugares) {
-		setQuantidadeDeLugares(novosLugares);
-	}
-
-//	public void addIngresso(Ingresso ing) {
-//		ingressos.add(ing);
-//	}
-//
-//	public void removeIngresso(Ingresso ing) {
-//		ingressos.remove(ing);
-//	}
 	
-	
-	Ingresso ingressos[] = new Ingresso[quantidadeDeLugares];
+	@JsonIgnore
+	@OneToMany(mappedBy = "compraEvento")
+	Compra compraEvento[] = new Compra[quantidadeDeLugares];
 	
 	public void comprarIngresso() {
 		if(getQuantidadeDeLugares()>=0) {

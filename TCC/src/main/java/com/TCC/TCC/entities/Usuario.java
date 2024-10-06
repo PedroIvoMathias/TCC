@@ -40,8 +40,8 @@ public class Usuario implements Serializable {
 	private String nome;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "usuario")
-	private List<Ingresso> ingressos = new ArrayList<>();
+	@OneToMany(mappedBy = "proprietario")
+	private List<Compra> compra = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -51,16 +51,16 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
-	public void addIngresso(Ingresso ing) {
-		ingressos.add(ing);
+	public void addCompra(Compra comp) {
+		compra.add(comp);
 	}
 
-	public void removeIngresso(Ingresso ing) {
-		ingressos.remove(ing);
+	public void removeCompra(Compra comp) {
+		compra.remove(comp);
 	}
 
-	public List<Ingresso> consultaIngressos() {
-		return new ArrayList<>(ingressos);
+	public List<Compra> consultaCompra() {
+		return new ArrayList<>(compra);
 	}
 
 }
