@@ -32,6 +32,9 @@ public class Compra {
 	@JoinColumn(name = "usuario_id",nullable = false )
 	private Usuario proprietario;
 
+	
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "evento_id",nullable = false)
 	private List<Evento> evento = new ArrayList<>();
