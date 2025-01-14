@@ -25,20 +25,42 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(unique = true,nullable = false)
+	@Column(unique = true, nullable = false)
 	private String email;
 
 	@Column(nullable = false)
 	private String senha;
 
-	@Column(unique = true,nullable = false,length = 20)
+
+	@Column(unique = true, nullable = false, length = 11)
+
 	private String cpf;
 
 	@Column(nullable = false)
 	private String nome;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "usuario")
-	private List<Ingresso> ingressos = new ArrayList<>();
+	@OneToMany(mappedBy = "proprietario")
+	private List<Compra> compra = new ArrayList<>();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void addCompra(Compra comp) {
+		compra.add(comp);
+	}
+
+	public void removeCompra(Compra comp) {
+		compra.remove(comp);
+	}
+
+	public List<Compra> consultaCompra() {
+		return new ArrayList<>(compra);
+	}
 
 }
