@@ -3,11 +3,6 @@ package com.TCC.TCC.entities;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,34 +37,5 @@ public class Evento implements Serializable {
 	@Column(nullable = false)
 	private String localizacao;
 
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "evento")
-//	private List<Ingresso> ingressos = new ArrayList<>();
 
-	public long getId() {
-		return Id;
-	}
-
-	public void setId(long id) {
-		Id = id;
-	}
-
-	public int getQuantidadeDeLugares() {
-		return quantidadeDeLugares;
-	}
-
-	public void setQuantidadeDeLugares(int lugares) {
-		quantidadeDeLugares = lugares;
-	}
-	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "compraEvento")
-	Compra compraEvento[] = new Compra[quantidadeDeLugares];
-	
-	public void comprarIngresso() {
-		if(getQuantidadeDeLugares()>=0) {
-			setQuantidadeDeLugares(getQuantidadeDeLugares()-1);
-			
-		}
-	}
 }

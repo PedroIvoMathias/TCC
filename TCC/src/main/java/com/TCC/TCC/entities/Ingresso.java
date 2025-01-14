@@ -2,11 +2,6 @@ package com.TCC.TCC.entities;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,18 +25,5 @@ public class Ingresso implements Serializable {
 	
 	@Column(nullable = false)
 	private Boolean meia;
-	
-	@ManyToOne
-	@JoinColumn(name = "compra_id", nullable = false)
-	private Compra compra;
-
-
-	public Long getId() {
-		return Id;
-	}
-
-	public void setId(Long id) {
-		Id = id;
-	}
 
 }
