@@ -2,7 +2,6 @@ package com.TCC.TCC.resources;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +13,14 @@ import com.TCC.TCC.services.UsuarioService;
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-	@Autowired
-	private UsuarioService service;
+	private final UsuarioService service;
 
-	@PostMapping
+    public UsuarioController(UsuarioService service) {
+        this.service = service;
+    }
+
+
+    @PostMapping
 	public ResponseEntity<Usuario> create(@RequestBody Usuario usuario){
 		Usuario obj = service.create(usuario);
 		return new ResponseEntity<>(obj, HttpStatus.CREATED);
@@ -31,7 +34,7 @@ public class UsuarioController {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Usuario> findById(@PathVariable Long id){
-		Usuario obj = service.findById(id);
+		Usuario obj = service.getUsuarioById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
@@ -48,4 +51,6 @@ public class UsuarioController {
 		service.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+
+
 }
